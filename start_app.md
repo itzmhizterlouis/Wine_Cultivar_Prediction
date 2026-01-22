@@ -37,3 +37,10 @@ The application will bind to `0.0.0.0` and default to port `8000`. You can overr
 - **SVM Classification**: High-accuracy Support Vector Machine model for cultivar identification.
 - **Domain Insights**: Embedded exploratory data analysis (EDA) visualizations.
 - **Premium Design**: Vineyard-themed interface with sophisticated enological aesthetics.
+## Production Deployment (Render)
+
+Deploy this application professionally:
+
+1.  **Build Command**: `pip install -r requirements.txt`
+2.  **Start Command**: `uvicorn app:app --host 0.0.0.0 --port $PORT` (or use the provided `Procfile`)
+3.  **Visuals**: Ensure `static/` directory is persistent or generated at runtime.
