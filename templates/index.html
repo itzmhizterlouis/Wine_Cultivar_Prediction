@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vigneron AI | Precision Cultivar Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #4c0519;
+            --burgundy-light: #831843;
+            --cream: #fffbeb;
+            --gold: #b45309;
+            --text: #1c1917;
+            --text-light: #57534e;
+            --border: #e7e5e4;
+            --white: #ffffff;
+            --shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--cream);
+            background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+            color: var(--text);
+            line-height: 1.6;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--burgundy);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .card {
+            background: var(--white);
+            padding: 3.5rem;
+            border-radius: 2px;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+
+        input {
+            border: none;
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 0;
+            font-size: 1.1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        input:focus {
+            outline: none;
+            border-bottom-color: var(--burgundy);
+        }
+
+        .submit-area {
+            text-align: center;
+        }
+
+        .btn {
+            background: var(--burgundy);
+            color: var(--cream);
+            padding: 1.5rem 4rem;
+            border: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .btn:hover {
+            background: var(--burgundy-light);
+            transform: translateY(-2px);
+        }
+
+        .result-section {
+            background: var(--burgundy);
+            color: var(--cream);
+            text-align: center;
+            padding: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .result-val {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+
+        .error-card {
+            background: #fff1f2;
+            color: #9f1239;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-left: 4px solid #e11d48;
+        }
+
+        .eda-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .eda-card {
+            text-align: center;
+        }
+
+        .eda-card img {
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border);
+            filter: sepia(0.2) contrast(0.9);
+            transition: all 0.5s ease;
+        }
+
+        .eda-card img:hover {
+            filter: none;
+        }
+
+        footer {
+            margin-top: 6rem;
+            text-align: center;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            padding-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .card {
+                padding: 2rem;
+            }
+
+            .eda-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Vigneron AI</h1>
+            <p class="subtitle">Precision Enological Classification System</p>
+        </header>
+
+        {% if errors %}
+        <div class="error-card">
+            <h3 style="margin-bottom: 1rem;">Submission Errors</h3>
+            <ul style="list-style: none;">
+                {% for error in errors %}
+                <li>&mdash; {{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if result %}
+        <div class="result-section">
+            <p class="subtitle" style="color: rgba(255,251,235,0.6);">Assessed Classification</p>
+            <div class="result-val">{{ cultivar }}</div>
+            <p style="font-size: 0.9rem; opacity: 0.8;">Chemical profile signature matched to designated cultivar class.
+            </p>
+        </div>
+        {% endif %}
+
+        <div class="card">
+            <h2 class="section-title">Chemical Spectrum</h2>
+            <form method="POST" action="/predict">
+                <div class="grid">
+                    {% for feature in features %}
+                    <div class="form-group">
+                        <label for="{{ feature }}">{{ feature.replace('_', ' ') }}</label>
+                        <input type="number" step="any" name="{{ feature }}" id="{{ feature }}" placeholder="0.00"
+                            required>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="submit-area">
+                    <button type="submit" class="btn">Initiate Analysis</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">Domain Insights</h2>
+            <div class="eda-grid">
+                <div class="eda-card">
+                    <p class="subtitle" style="margin-bottom: 1rem; font-size: 0.7rem;">Distribution Matrix</p>
+                    <img src="{{ eda_scatter }}" alt="Scatter Matrix">
+                </div>
+                <div class="eda-card">
+                    <p class="subtitle" style="margin-bottom: 1rem; font-size: 0.7rem;">Cultivar Density</p>
+                    <img src="{{ class_dist }}" alt="Class Density">
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Precision Machine Learning for Enology • Vintage 2026 Archive
+        </footer>
+    </div>
+</body>
+
+</html>
